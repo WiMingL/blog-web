@@ -29,8 +29,8 @@
             </g-link>
             <p class="post-meta">
               Posted by
-              <a href="#!">{{ edge.node.creator.username }}</a>
-              on {{ edge.node.created_at }}
+              <g-link to="/">{{ edge.node.creator.username }}</g-link>
+              on {{ format(edge.node.created_at) }}
             </p>
             <p>
               <g-link v-for="tag in edge.node.tags"
@@ -47,9 +47,9 @@
           <!-- Divider-->
 
           <!-- Pager-->
-          <Pager :info="$page.articles.pageInfo" />
+          <!-- <Pager :info="$page.articles.pageInfo" />
           <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase"
-               href="#!">Older Posts →</a></div>
+               href="#!">Older Posts →</a></div> -->
         </div>
       </div>
     </div>
@@ -90,6 +90,7 @@ query($page: Int) {
 <script>
 // 引入分页组件
 import { Pager } from 'gridsome'
+import moment from 'moment'
 
 export default {
   name: 'Home',
@@ -98,6 +99,11 @@ export default {
   },
   components: {
     Pager
+  },
+  methods: {
+    format(date) {
+      return moment(date).format('YYYY-MM-DD HH:mm:ss')
+    }
   }
 }
 </script>

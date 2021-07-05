@@ -9,15 +9,24 @@
         <div role="navigation">
           <ul class="nav nav-pills">
             <li role="presentation">
-              <g-link to="/">Home
+              <g-link to="/"
+                      class="nav-item"
+                      exact
+                      :class="{active: $route.name==='Home'}">Home
               </g-link>
             </li>
             <li role="presentation">
-              <g-link to="/about">About
+              <g-link to="/about"
+                      class="nav-item"
+                      exact
+                      :class="{active: $route.name==='About'}">About
               </g-link>
             </li>
             <li role="presentation">
-              <g-link to="/contact">Contact
+              <g-link to="/contact"
+                      class="nav-item"
+                      exact
+                      :class="{active: $route.name==='Contact'}">Contact
               </g-link>
             </li>
           </ul>
@@ -73,5 +82,19 @@ query {
 }
 </static-query>
 
-<style>
+<style scoped>
+.nav .nav-item {
+  margin-left: 10px;
+  padding: 0 10px;
+  color: #888;
+  font-weight: 600;
+}
+
+.nav .nav-item:hover {
+  color: #333;
+}
+
+.nav .active {
+  color: #333;
+}
 </style>

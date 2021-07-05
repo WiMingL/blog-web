@@ -29,12 +29,14 @@
               <!-- https://startbootstrap.com/solution/contact-forms-->
               <!-- to get an API token!-->
               <form id="contactForm"
-                    data-sb-form-api-token="API_TOKEN">
+                    data-sb-form-api-token="API_TOKEN"
+                    @submit.prevent="send">
                 <div class="form-floating">
                   <input class="form-control"
                          id="name"
                          type="text"
                          placeholder="Enter your name..."
+                         v-model="form.name"
                          data-sb-validations="required" />
                   <label for="name">Name</label>
                   <div class="invalid-feedback"
@@ -45,6 +47,7 @@
                          id="email"
                          type="email"
                          placeholder="Enter your email..."
+                         v-model="form.email"
                          data-sb-validations="required,email" />
                   <label for="email">Email address</label>
                   <div class="invalid-feedback"
@@ -57,6 +60,7 @@
                          id="phone"
                          type="tel"
                          placeholder="Enter your phone number..."
+                         v-model="form.phone"
                          data-sb-validations="required" />
                   <label for="phone">Phone Number</label>
                   <div class="invalid-feedback"
@@ -67,6 +71,7 @@
                             id="message"
                             placeholder="Enter your message here..."
                             style="height: 12rem"
+                            v-model="form.message"
                             data-sb-validations="required"></textarea>
                   <label for="message">Message</label>
                   <div class="invalid-feedback"
@@ -95,7 +100,7 @@
                   <div class="text-center text-danger mb-3">Error sending message!</div>
                 </div>
                 <!-- Submit Button-->
-                <button class="btn btn-primary text-uppercase disabled"
+                <button class="btn btn-primary text-uppercase"
                         id="submitButton"
                         type="submit">Send</button>
               </form>
@@ -108,8 +113,36 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  name: 'Contact'
+  name: 'Contact',
+  data() {
+    return {
+      form: {
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+      }
+    }
+  },
+  methods: {
+    async send() {
+      try {
+        await axios({
+          method: 'post',
+          url: 'http://106.75.153.104:1337/contacts',
+          data: this.form
+        })
+        alert('提交成功')
+        this.$router.push('/')
+      } catch (err) {
+        console.log(err)
+      }
+
+    }
+  }
 }
 </script>
 
