@@ -47,8 +47,8 @@
           <!-- Divider-->
 
           <!-- Pager-->
-          <!-- <Pager :info="$page.articles.pageInfo" />
-          <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase"
+          <Pager :info="$page.articles.pageInfo" />
+          <!-- <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase"
                href="#!">Older Posts →</a></div> -->
         </div>
       </div>
@@ -60,7 +60,7 @@
 // 使用分页配置来将数据进行分页
 <page-query>
 query($page: Int) {
-  articles: allStrapiArticle(perPage: 2, page: $page) @paginate {
+  articles: allStrapiArticle(perPage: 10, page: $page) @paginate {
     pageInfo {
       totalPages
       currentPage
