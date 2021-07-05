@@ -25,7 +25,6 @@
             <li role="presentation">
               <g-link to="/contact"
                       class="nav-item"
-                      exact
                       :class="{active: $route.name==='Contact'}">Contact
               </g-link>
             </li>
@@ -86,15 +85,15 @@ query {
 .nav .nav-item {
   margin-left: 10px;
   padding: 0 10px;
-  color: #888;
+  color: #ddd;
   font-weight: 600;
 }
 
 .nav .nav-item:hover {
-  color: #333;
+  color: #fff;
 }
 
 .nav .active {
-  color: #333;
+  color: #fff;
 }
 </style>
